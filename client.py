@@ -30,8 +30,8 @@ def connect():
 
 
         client.connect((HOST, PORT))
-        print("Successfully connected to server")
-        add_message("[SERVER] Successfully connected to the server")
+        print("Successfully Connected to Server")
+        add_message("[SERVER] Successfully1 connected to the server")
     except:
         messagebox.showerror("Unable to connect to server", f"Unable to connect to server {HOST} {PORT}")
 
@@ -39,7 +39,7 @@ def connect():
     if username != '':
         client.sendall(username.encode())
     else:
-        messagebox.showerror("Invalid username", "Username cannot be empty")
+        messagebox.showerror("Invalid Username", "Username cannot be empty")
 
     threading.Thread(target=listen_for_messages_from_server, args=(client, )).start()
 
@@ -56,7 +56,7 @@ def send_message():
 
 root = tk.Tk()
 root.geometry("600x600")
-root.title("Messenger Client")
+root.title("Real-Time Chat Application")
 root.resizable(False, False)
 
 root.grid_rowconfigure(0, weight=1)

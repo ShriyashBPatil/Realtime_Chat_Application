@@ -1,6 +1,8 @@
 import socket
 import threading
 
+print("Server Configuration")
+
 HOST = input("Enter the Address to Host Server: ")
 PORT = int(input("Enter Port to the Server: "))
 LISTENER_LIMIT = int(input("Connection Limit: "))
@@ -55,7 +57,8 @@ def main():
     try:
        
         server.bind((HOST, PORT))
-        print(f"Running the server on {HOST} {PORT}")
+        print(f"Initiated Server on {HOST}:{PORT}")
+        print("Clients can now Connect to Server")
     except:
         print(f"Unable to bind to host {HOST} and port {PORT}")
 
@@ -65,7 +68,7 @@ def main():
     while 1:
 
         client, address = server.accept()
-        print(f"Successfully connected to client {address[0]} {address[1]}")
+        print(f"Successfully Connected to {address[0]}:{address[1]}")
 
         threading.Thread(target=client_handler, args=(client, )).start()
 
