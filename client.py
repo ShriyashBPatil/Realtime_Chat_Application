@@ -6,7 +6,9 @@ from tkinter import messagebox
 
 HOST = input("Enter the Address of Host Server: ")
 PORT = int(input("Enter Port to the Server: "))
-
+print("1:Snapchat")
+print("2:Facebook")
+user=int(input("Select Your Theme:"))
 DARK_GREY = '#121212'
 MEDIUM_GREY = '#1F1B24'
 OCEAN_BLUE = '#464EB8'
@@ -14,6 +16,30 @@ WHITE = "white"
 FONT = ("Helvetica", 17)
 BUTTON_FONT = ("Helvetica", 15)
 SMALL_FONT = ("Helvetica", 13)
+
+
+
+if user==1:
+    topbar="yellow"
+    chatarea="white"
+    bottombar="yellow"
+    buttoncolor="red"
+    text="black"
+    username="red"
+    chat="black"
+elif user==2:
+    topbar="blue"
+    chatarea="white"
+    bottombar="blue"
+    buttoncolor="grey"
+    text="black"
+    username="white"
+    chat="black"
+
+
+
+
+
 
 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -63,31 +89,31 @@ root.grid_rowconfigure(0, weight=1)
 root.grid_rowconfigure(1, weight=4)
 root.grid_rowconfigure(2, weight=1)
 
-top_frame = tk.Frame(root, width=600, height=100, bg=DARK_GREY)
+top_frame = tk.Frame(root, width=600, height=100, bg=topbar)
 top_frame.grid(row=0, column=0, sticky=tk.NSEW)
 
-middle_frame = tk.Frame(root, width=600, height=400, bg=MEDIUM_GREY)
+middle_frame = tk.Frame(root, width=600, height=400, bg=chatarea)
 middle_frame.grid(row=1, column=0, sticky=tk.NSEW)
 
-bottom_frame = tk.Frame(root, width=600, height=100, bg=DARK_GREY)
+bottom_frame = tk.Frame(root, width=600, height=100, bg=bottombar)
 bottom_frame.grid(row=2, column=0, sticky=tk.NSEW)
 
-username_label = tk.Label(top_frame, text="Enter username:", font=FONT, bg=DARK_GREY, fg=WHITE)
+username_label = tk.Label(top_frame, text="Enter username:", font=FONT, bg=topbar, fg=username)
 username_label.pack(side=tk.LEFT, padx=10)
 
-username_textbox = tk.Entry(top_frame, font=FONT, bg=MEDIUM_GREY, fg=WHITE, width=23)
+username_textbox = tk.Entry(top_frame, font=FONT, bg=chatarea, fg=text, width=23)
 username_textbox.pack(side=tk.LEFT)
 
-username_button = tk.Button(top_frame, text="Join", font=BUTTON_FONT, bg=OCEAN_BLUE, fg=WHITE, command=connect)
+username_button = tk.Button(top_frame, text="Join", font=BUTTON_FONT, bg=buttoncolor, fg=WHITE, command=connect)
 username_button.pack(side=tk.LEFT, padx=15)
 
-message_textbox = tk.Entry(bottom_frame, font=FONT, bg=MEDIUM_GREY, fg=WHITE, width=38)
+message_textbox = tk.Entry(bottom_frame, font=FONT, bg=chatarea, fg=text, width=38)
 message_textbox.pack(side=tk.LEFT, padx=10)
 
-message_button = tk.Button(bottom_frame, text="Send", font=BUTTON_FONT, bg=OCEAN_BLUE, fg=WHITE, command=send_message)
+message_button = tk.Button(bottom_frame, text="Send", font=BUTTON_FONT, bg=buttoncolor, fg=WHITE, command=send_message)
 message_button.pack(side=tk.LEFT, padx=10)
 
-message_box = scrolledtext.ScrolledText(middle_frame, font=SMALL_FONT, bg=MEDIUM_GREY, fg=WHITE, width=67, height=26.5)
+message_box = scrolledtext.ScrolledText(middle_frame, font=SMALL_FONT, bg=chatarea, fg=chat, width=67, height=26.5)
 message_box.config(state=tk.DISABLED)
 message_box.pack(side=tk.TOP)
 
